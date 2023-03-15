@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
+import FetchSongs from './components/FetchSongs';
+import PlayListCreator from './components/PlaylistCreator'
 import {me} from './store'
 
 /**
@@ -20,7 +22,9 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route  exact path="/home" component={Home} />
+            <Route  exact path="/songs" component={FetchSongs} />
+            <Route  exact path="/playlist" component={PlayListCreator} />
             <Redirect to="/home" />
           </Switch>
         ) : (

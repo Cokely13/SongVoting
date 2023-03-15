@@ -1,5 +1,5 @@
 import React from 'react'
-import SongVoting from './SongVoting';
+import SongVoting from './components/SongVoting';
 import Navbar from './components/Navbar'
 import Routes from './Routes'
 

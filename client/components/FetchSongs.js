@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import PlaylistCreator from './PlaylistCreator';
 
-const API_KEY = 'YOUR_LAST_FM_API_KEY';
+const API_KEY = '6e56a81fd7f7f0fb08932517fef4fc86';
 const API_URL = `https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=${API_KEY}&format=json&limit=100`;
 
 const FetchSongs = () => {
@@ -29,6 +30,8 @@ const FetchSongs = () => {
   if (error) return <p>{error}</p>;
 
   return (
+
+    <div>
     <div>
       <h2>Top 100 Songs</h2>
       <ol>
@@ -38,6 +41,8 @@ const FetchSongs = () => {
           </li>
         ))}
       </ol>
+    </div>
+    <PlaylistCreator songs={songs}/>
     </div>
   );
 };
