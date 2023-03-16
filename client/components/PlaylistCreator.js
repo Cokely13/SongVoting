@@ -48,6 +48,7 @@ const PlaylistCreator = (props) => {
             </li>
           ))}
         </ul>
+        <button>Create Playlist</button>
       </div>
     </div>
   );

@@ -8,8 +8,6 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
-      <h1>Song Voting</h1>
-      <SongVoting songA="Song A Title" songB="Song B Title" />
     </div>
   )
 }
