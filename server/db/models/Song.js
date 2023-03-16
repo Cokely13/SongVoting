@@ -9,6 +9,9 @@ const Song = db.define('song', {
     artist: {
       type: Sequelize.STRING,
   },
+  playlistId: {
+    type: Sequelize.INTEGER,
+},
 
 })
 
