@@ -10,8 +10,8 @@ const PlaylistCreator = (props) => {
   const dispatch = useDispatch()
   const allSongs = props.songs
   const currentPlayList = props.thisPlaylist
-  console.log("PROPS", allSongs)
-  console.log("P!!!", currentPlayList)
+  // console.log("PROPS", allSongs)
+  // console.log("P!!!", currentPlayList)
 
   const [playlist, setPlaylist] = useState([]);
 

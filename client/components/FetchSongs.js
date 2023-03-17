@@ -37,7 +37,7 @@ const FetchSongs = (props) => {
     // Safe to add dispatch to the dependencies array
   }, [])
 
-  console.log("HERE WE GO", playlists)
+  // console.log("HERE WE GO", playlists)
   const thisPlaylist = playlists.filter((playlist)=> playlist.name == props.playListName)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
