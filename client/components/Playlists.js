@@ -14,6 +14,8 @@ function Playlists() {
   const [createdBy, setCreatedBy] = useState();
   const playlists = useSelector((state) => state.allPlaylists )
 
+  console.log("PLAU", playlists)
+
   useEffect(() => {
     dispatch(fetchPlaylists())
     // Safe to add dispatch to the dependencies array
@@ -23,13 +25,14 @@ function Playlists() {
   return (
     <div>
     <div>Playlists</div>
-    {playlists.map((playlist) => {
+
+    {playlists ?   playlists.map((playlist) => {
       return (
         <div key={playlist.id}>
-          {playlists.name}
+          <Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
         </div>
       )
-    })}
+    }) : <div>NAN</div>}
     </div>
   )
 }
