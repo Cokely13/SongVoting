@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { createSong } from '../store/allSongsStore';
 
 
-const MOCK_SONGS = [
-  // Replace this mock data with real data from an API
-  { id: 1, title: 'Song 1', artist: 'Artist 1' },
-  { id: 2, title: 'Song 2', artist: 'Artist 2' },
-  { id: 3, title: 'Song 3', artist: 'Artist 3' },
-  // ...
-];
+
 
 const PlaylistCreator = (props) => {
-  const playListSongs = props.songs
-  console.log("PROPS", playListSongs)
+  const dispatch = useDispatch()
+  const allSongs = props.songs
+  const currentPlayList = props.thisPlaylist
+  console.log("PROPS", allSongs)
+  console.log("P!!!", currentPlayList)
+
   const [playlist, setPlaylist] = useState([]);
 
   const addToPlaylist = (song) => {
     if (!playlist.includes(song)) {
+      const newSong = {
+        songName: song.name,
+        artist: song.artist.name,
+        playlistId: currentPlayList[0].id
+      }
+    console.log("test", newSong)
+      dispatch(createSong(newSong))
       setPlaylist([...playlist, song]);
     }
   };
@@ -30,7 +38,7 @@ const PlaylistCreator = (props) => {
       <div>
         <h3>All songs:</h3>
         <ul>
-          {playListSongs.map((song, index) => (
+          {allSongs.map((song, index) => (
             <li key={index}>
               {song.name} - {song.artist.name}
               <button onClick={() => addToPlaylist(song)}>Add to playlist</button>

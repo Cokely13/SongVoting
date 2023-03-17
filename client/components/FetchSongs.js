@@ -42,7 +42,7 @@ const FetchSongs = (props) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
-  console.log("THIS ONE", thisPlaylist)
+  // console.log("THIS ONE", thisPlaylist)
 
   return (
 
@@ -57,7 +57,7 @@ const FetchSongs = (props) => {
         ))}
       </ol>
     </div> */}
-    <PlaylistCreator songs={songs}/>
+    <PlaylistCreator songs={songs} thisPlaylist={thisPlaylist}/>
     </div>
   );
 };
