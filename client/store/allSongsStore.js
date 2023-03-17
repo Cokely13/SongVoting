@@ -5,10 +5,10 @@ const CREATE_SONG = "CREATE_SONG"
 const DELETE_SONG = "DELETE_SONG"
 
 
-export const setSongs = (songs) =>{
+export const setSongs = (song) =>{
   return{
     type: SET_SONGS,
-    songs
+    song
   }
 };
 
@@ -28,33 +28,33 @@ const _deleteSong = (song) => {
 
 export const fetchSongs = () => {
   return async (dispatch) => {
-        const {data}= await Axios.get("/api/playlists");
+        const {data}= await Axios.get("/api/songs");
         dispatch(setSongs(data));
   };
 };
 
 export const createSong = (song) => {
   return async (dispatch) => {
-    const { data: created } = await Axios.post("/api/playlists", song);
+    const { data: created } = await Axios.post("/api/songs", song);
     dispatch(_createSong(created));
-    // history.push("/playlists");
+    // history.push("/songs");
   };
 };
 
 export const deleteSong = (id, history) => {
   return async (dispatch) => {
-    const { data: song } = await Axios.delete(`/api/playlists/${id}`);
+    const { data: song } = await Axios.delete(`/api/songs/${id}`);
     dispatch(_deleteSong(song));
-    history.push("/playlists");
+    history.push("/songs");
   };
 };
 
 
 const initialState = [];
-export default function playlistsReducer(state = initialState, action) {
+export default function songsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SONGS:
-      return action.songs;
+      return action.song;
       case CREATE_SONG:
         return [...state, action.song];
         case DELETE_SONG:

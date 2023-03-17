@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios';
 import PlaylistCreator from './PlaylistCreator';
+import {fetchPlaylists} from '../store/allPlaylistStore'
 
 const API_KEY = '6e56a81fd7f7f0fb08932517fef4fc86';
 const API_URL = `https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=${API_KEY}&format=json&limit=100`;
 
-const FetchSongs = () => {
+const FetchSongs = (props) => {
+  const playlists = useSelector((state) => state.allPlaylists )
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchTop100Songs = async () => {
@@ -23,16 +27,27 @@ const FetchSongs = () => {
       }
     };
 
+
+
     fetchTop100Songs();
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchPlaylists())
+    // Safe to add dispatch to the dependencies array
+  }, [])
+
+  console.log("HERE WE GO", playlists)
+  const thisPlaylist = playlists.filter((playlist)=> playlist.name == props.playListName)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
+
+  console.log("THIS ONE", thisPlaylist)
 
   return (
 
     <div>
-    <div>
+    {/* <div>
       <h2>Top 100 Songs</h2>
       <ol>
         {songs.map((song, index) => (
@@ -41,7 +56,7 @@ const FetchSongs = () => {
           </li>
         ))}
       </ol>
-    </div>
+    </div> */}
     <PlaylistCreator songs={songs}/>
     </div>
   );
