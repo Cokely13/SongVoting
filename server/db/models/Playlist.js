@@ -15,6 +15,14 @@ const Playlist = db.define('playlist', {
     createdBy: {
       type: Sequelize.INTEGER,
   },
+  wins: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+},
+losses: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+},
 
 })
 

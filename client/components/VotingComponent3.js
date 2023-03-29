@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-function VotingComponent3({ array1, array2 }) {
+function VotingComponent3(props) {
+  const array1 = props.array1
+  const array2 = props.array2
   const [index, setIndex] = useState(0);
   const [votes, setVotes] = useState({});
 

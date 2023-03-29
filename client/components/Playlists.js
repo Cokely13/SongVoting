@@ -6,6 +6,7 @@ import { Link, useParams, } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
 import { fetchPlaylists} from '../store/allPlaylistStore'
 import VotingComponent3 from './VotingComponent3'
+import PlaylistComparison from './PlaylistComparison'
 
 function Playlists() {
   const dispatch = useDispatch()
@@ -25,15 +26,14 @@ function Playlists() {
 
   const addToVote1 = (playlist) => {
     let result = playlist.songs.map(({ songName }) => songName)
-    setVote1(result)
+    setVote1(playlist)
     console.log("VOTE2!", vote2)
   }
 
   const addToVote2 = (playlist) => {
     let result2 = playlist.songs.map(({ songName }) => songName)
-    setVote2(result2)
+    setVote2(playlist)
     setUnlockVoting(1)
-    console.log("VOTE1!", vote1)
   }
 
 
@@ -53,7 +53,7 @@ function Playlists() {
     }) : <div>NAN</div>}
     </div>
     {unlockVoting == 1 ? <div>
-      <VotingComponent3  array1={vote1} array2={vote2} />
+      <PlaylistComparison  playlist1={vote1} playlist2={vote2} />
     </div>: <div>Check</div>}
     </div>
   )

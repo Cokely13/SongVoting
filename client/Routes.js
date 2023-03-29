@@ -9,6 +9,7 @@ import SearchList from './components/SearchList';
 import CreatePlaylist from './components/CreatePlaylist';
 import Playlists from './components/Playlists';
 import PlaylistDetail from './components/PlaylistDetail';
+import PlaylistComparison from './components/PlaylistComparison';
 import {me} from './store'
 
 /**
@@ -30,6 +31,7 @@ class Routes extends Component {
             <Route  exact path="/songs" component={FetchSongs} />
             <Route  exact path="/playlist" component={PlayListCreator} />
             <Route  exact path="/search" component={SearchList} />
+            <Route  exact path="/compare" component={PlaylistComparison} />
             <Route  exact path="/playlists" component={Playlists} />
             <Route  exact path="/playlists/:playlistId" component={PlaylistDetail} />
             <Route  exact path="/create" component={CreatePlaylist} />

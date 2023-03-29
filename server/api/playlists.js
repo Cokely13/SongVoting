@@ -29,6 +29,15 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const playlist = await Playlist.findByPk(req.params.id)
+    res.send(await playlist.update(req.body));
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 //Get read all playlists
 router.get('/:id', async (req, res, next) => {
