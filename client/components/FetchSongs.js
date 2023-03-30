@@ -47,16 +47,6 @@ const FetchSongs = (props) => {
   return (
 
     <div>
-    {/* <div>
-      <h2>Top 100 Songs</h2>
-      <ol>
-        {songs.map((song, index) => (
-          <li key={index}>
-            {song.name} - {song.artist.name}
-          </li>
-        ))}
-      </ol>
-    </div> */}
     <PlaylistCreator songs={songs} thisPlaylist={thisPlaylist}/>
     </div>
   );

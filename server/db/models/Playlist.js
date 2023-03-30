@@ -11,6 +11,7 @@ const Playlist = db.define('playlist', {
     },
     name: {
         type: Sequelize.STRING,
+        unique: true
     },
     createdBy: {
       type: Sequelize.INTEGER,

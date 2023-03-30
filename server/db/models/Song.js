@@ -7,14 +7,10 @@ const Song = db.define('Song', {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    votes: {
-      type: Sequelize.INTEGER,
-      defaultValue: 0,
+    artist: {
+      type: Sequelize.STRING,
     },
-    totalVotes: {
-      type: Sequelize.INTEGER,
-      defaultValue: 0,
-    },
+
   });
 
 

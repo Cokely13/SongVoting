@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { updateSinglePlaylist } from '../store/singlePlaylistStore';
+import './PlaylistComparison.css'
+
 
 function PlaylistComparison({ playlist1, playlist2 }) {
   const dispatch = useDispatch()
@@ -24,14 +27,14 @@ function PlaylistComparison({ playlist1, playlist2 }) {
 
   const getWinner = () => {
     if (votes1 > votes2) {
-      playlist1.wins = +1
-      playlist2.losses = +1
+      playlist1.wins = playlist1.wins +1
+      playlist2.losses = playlist2.losses+1
       dispatch(updateSinglePlaylist(playlist1))
       dispatch(updateSinglePlaylist(playlist2))
       return playlist1.name;
     } else if (votes2 > votes1) {
-      playlist2.wins = +1
-      playlist1.losses = +1
+      playlist2.wins = playlist2.wins +1
+      playlist1.losses = playlist1.losses+1
       dispatch(updateSinglePlaylist(playlist1))
       dispatch(updateSinglePlaylist(playlist2))
       return playlist2.name;
@@ -40,53 +43,46 @@ function PlaylistComparison({ playlist1, playlist2 }) {
     }
   };
 
+  const handleClick = {
+
+  }
+
   return (
-    <div>
+    <div className="playlist-comparison-container">
       {showWinner ? (
         <div>
-          <h2>The winner is: {getWinner()}</h2>
+          <h2 className="playlist-comparison-winner">The winner is: {getWinner()}</h2>
+          <Link to={'/home'}>Home</Link>
         </div>
       ) : (
-        <div>
-          <div style={{ float: 'left' }}>
-            <h2>{playlist1.name}</h2>
-            <p>Votes: {votes1}</p>
+        <div className="playlist-comparison-wrapper">
+          <div className="playlist-comparison-item">
+            <h2 className="playlist-comparison-name">{playlist1.name}</h2>
+            <p className="playlist-comparison-votes">Votes: {votes1}</p>
             {songs1.length > 0 && (
               <div>
                 <h3>{songs1[0].songName}</h3>
-                <button onClick={handleVote1}>Vote</button>
+                <button className="playlist-comparison-button" onClick={handleVote1}>Vote</button>
               </div>
             )}
-            {/* {songs1.length > 1 && (
-              <div>
-                <h3>{songs1[1].songName}</h3>
-                <button onClick={handleVote1}>Vote</button>
-              </div>
-            )} */}
           </div>
-          <div style={{ float: 'right' }}>
-            <h2>{playlist2.name}</h2>
-            <p>Votes: {votes2}</p>
+          <div className="playlist-comparison-item">
+            <h2 className="playlist-comparison-name">{playlist2.name}</h2>
+            <p className="playlist-comparison-votes">Votes: {votes2}</p>
             {songs2.length > 0 && (
               <div>
                 <h3>{songs2[0].songName}</h3>
-                <button onClick={handleVote2}>Vote</button>
+                <button className="playlist-comparison-button" onClick={handleVote2}>Vote</button>
               </div>
             )}
-            {/* {songs2.length > 1 && (
-              <div>
-                <h3>{songs2[1].songName}</h3>
-                <button onClick={handleVote2}>Vote</button>
-              </div>
-            )} */}
           </div>
-          <div style={{ clear: 'both' }}></div>
           {songs1.length === 0 && songs2.length === 0 && (
-            <button onClick={() => setShowWinner(true)}>Show Winner</button>
+            <button className="playlist-comparison-button" onClick={() => setShowWinner(true)}>Show Winner</button>
           )}
         </div>
       )}
     </div>
-  )}
+  );
+  }
 
   export default PlaylistComparison

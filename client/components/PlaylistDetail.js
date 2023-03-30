@@ -22,7 +22,10 @@ function PlaylistDetail() {
 
   return (
     <div>
-    <div>PlaylistDetail</div>
+    <div>Name : {playlist.name}</div>
+    <div>Wins: {playlist.wins}</div>
+    <div>Loss: {playlist.losses}</div>
+    <div><u>Songs</u></div>
     {playlist.songs ?   playlist.songs.map((song) => {
       return (
         <div key={song.id}>
